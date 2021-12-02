@@ -22,8 +22,10 @@ namespace fileSearch
 
                 string[] getDrive = Directory.GetLogicalDrives();
 
+
                 foreach (string drives in getDrive)
                 {
+                
                     Console.WriteLine("Searching under " + drives + " drive");
 
                     Console.WriteLine();
@@ -37,6 +39,7 @@ namespace fileSearch
 
                     if (getFolder != null)
                     {
+                    
                         foreach (string folder in getFolder)
                         {
                             Console.WriteLine(folder);
@@ -45,6 +48,7 @@ namespace fileSearch
 
                         foreach(string folder in getFolder)
                         {
+                        
                             Console.WriteLine("Do you want to search the files in " + folder + " ?");
                             Console.WriteLine("Y for yes" + "        " + " N for no");
                             Console.WriteLine("Hit Enter to skip this folder: ");
@@ -86,6 +90,8 @@ namespace fileSearch
 
                 }
             }
+            
+           
             catch (Exception e)
             {
 
