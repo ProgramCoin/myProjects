@@ -22,10 +22,9 @@ namespace fileSearch
 
                 string[] getDrive = Directory.GetLogicalDrives();
 
-
                 foreach (string drives in getDrive)
                 {
-                
+
                     Console.WriteLine("Searching under " + drives + " drive");
 
                     Console.WriteLine();
@@ -37,9 +36,10 @@ namespace fileSearch
 
                     string[] getFolder = Directory.GetDirectories(string.Concat(drives, readInput));
 
+
                     if (getFolder != null)
                     {
-                    
+
                         foreach (string folder in getFolder)
                         {
                             Console.WriteLine(folder);
@@ -48,7 +48,7 @@ namespace fileSearch
 
                         foreach(string folder in getFolder)
                         {
-                        
+                            Console.WriteLine();
                             Console.WriteLine("Do you want to search the files in " + folder + " ?");
                             Console.WriteLine("Y for yes" + "        " + " N for no");
                             Console.WriteLine("Hit Enter to skip this folder: ");
@@ -58,13 +58,24 @@ namespace fileSearch
                             if (readFiles == "Y" || readFiles == "y")
                             {
 
-                                string[] files = Directory.GetDirectories(string.Concat(folder, getFolder));
+                                string[] files = Directory.GetFiles(string.Concat(folder + @"\" + getFolder));
 
-                                foreach(string file in files)
+                                if (files != null)
                                 {
-                                    Console.WriteLine(file);
+                                    
+                                    foreach (string file in files)
+                                    {
+
+                                        Console.WriteLine(file);
+
+                                    }
                                 }
                             
+                                else if (readFiles == "N" || readFiles == "n")
+                                {
+                                    Environment.Exit(0);
+                                }
+
                                 ConsoleKeyInfo readKey = Console.ReadKey();
                             
                                 while (readKey.Key == ConsoleKey.Enter)
@@ -74,12 +85,9 @@ namespace fileSearch
                                 
                                 }
 
+
                             }
 
-                            else if (readFiles == "N" || readFiles == "n")
-                            {
-                                Environment.Exit(0);
-                            }
 
 
 
@@ -90,8 +98,6 @@ namespace fileSearch
 
                 }
             }
-            
-           
             catch (Exception e)
             {
 
