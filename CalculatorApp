@@ -1,0 +1,179 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+
+namespace csCalculator
+{
+    /// <summary>
+    /// Main class to run program
+    /// </summary>
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Functions func = new Functions();
+
+            func.userPrompt();
+
+        }
+
+
+    }
+
+    /// <summary>
+    /// Functions class to make a library of the commands in the calculator
+    /// </summary>
+    public class Functions
+    {
+        string[] functions = { "*", "/", "+", "-" };
+
+        public void userPrompt()
+        {
+            try
+            {
+                string mt = String.Empty;
+
+                Console.WriteLine("Please enter one of the functions shown: ");
+                foreach (string f in functions)
+                {
+                    Console.WriteLine("{0}", f);
+                }
+                Console.WriteLine("Multiply({0})  or Divide({1})  or Add({2})  or Subtract({3}).", functions[0], functions[1], functions[2], functions[3]);
+
+                Console.WriteLine(mt);
+
+                void ask()
+                {
+                    Console.WriteLine("Please enter one of the functions shown: ");
+                    foreach (string f in functions)
+                    {
+                        Console.WriteLine("{0}", f);
+                    }
+                    Console.WriteLine("Multiply({0})  or Divide({1})  or Add({2})  or Subtract({3}).", functions[0], functions[1], functions[2], functions[3]);
+
+                    Console.WriteLine(mt);
+                }
+                string userFunctionInput = Console.ReadLine();
+
+
+                switch (userFunctionInput)
+                {
+                    case "*":
+                        while (userFunctionInput == functions[0])
+                        {
+                            Console.WriteLine("Please enter the first number you want to start the multiplication with: ");
+                            int firstNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Now enter second number to complete the operation: ");
+                            int secondNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Program successful. Result is: {0}", Multiply(firstNum, secondNum));
+                            Console.WriteLine(@"-------------------------------------------------");
+
+                            break;
+                        }
+                            break;
+
+                    case "/":
+                        while (userFunctionInput == functions[1])
+                        {
+                            Console.WriteLine("Please enter the first number you want to start the division with: ");
+                            int firstNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Now enter second number to complete the operation: ");       
+                            int secondNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Program successful. Result is: {0}", Divide(firstNum, secondNum));
+                            Console.WriteLine(@"-------------------------------------------------");
+
+                            break;
+                        }
+                        break;
+
+                    case "+":
+                        while (userFunctionInput == functions[2])
+                        {
+                            Console.WriteLine("Please enter the first number you want to start the addition with: ");
+                            int firstNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Now enter second number to complete the operation: ");
+                            int secondNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Program successful. Result is: {0}", Add(firstNum, secondNum));
+                            Console.WriteLine(@"-------------------------------------------------");
+
+                            break;
+                        }
+                        break;
+
+                    case "-":
+                        while (userFunctionInput == functions[3])
+                        {
+                            Console.WriteLine("Please enter the first number you want to start the subtraction with: ");
+                            int firstNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Now enter second number to complete the operation: ");
+                            int secondNum = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Program successful. Result is: {0}", Subtract(firstNum, secondNum));
+                            Console.WriteLine(@"-------------------------------------------------");
+
+                            break;
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("Something went wrong");
+                        break;
+                }
+
+                while (!userFunctionInput.Contains(functions[0]) || !userFunctionInput.Contains(functions[1]) || !userFunctionInput.Contains(functions[2]) || !userFunctionInput.Contains(functions[3]))
+                {
+                    userPrompt();
+
+                    Console.WriteLine(mt);
+                    
+                    break;
+                }
+                userPrompt();
+                Console.WriteLine(mt);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+            }
+
+        }
+
+        public float Multiply(float x, float y)
+        {
+
+            return x * y;
+
+        }
+
+        public float Divide(float x, float y)
+        {
+
+            return x / y;
+
+        }
+        public float Add(float x, float y)
+        {
+
+            return x + y;
+
+        }
+        public float Subtract(float x, float y)
+        {
+
+            return x - y;
+
+        }
+    }
+}
